@@ -1,6 +1,5 @@
 #include <msp430g2553.h>
 #include "game.h"
-#include "LCD.c"
 
 unsigned char initPlayer()
 {
@@ -35,14 +34,13 @@ unsigned char movePlayer(unsigned char player, unsigned char direction)
         	printPlayer(player);
         	waitForButtonRelease(BIT1);
         	break;
-
         case UP:
             clearPlayer(player);
             player -= 0x40;
             printPlayer(player);
             waitForButtonRelease(BIT3);
             break;
-          case DOWN:
+         case DOWN:
         	clearPlayer(player);
         	player += 0x40;
         	printPlayer(player);
@@ -51,8 +49,9 @@ unsigned char movePlayer(unsigned char player, unsigned char direction)
 
         return player;
 }
-
-char didPlayerWin(unsigned char player)
-{
-        return player == 0xC7;
 }
+//char didPlayerWin(unsigned char player)
+//{
+//        return player == 0xC7;
+//}
+
