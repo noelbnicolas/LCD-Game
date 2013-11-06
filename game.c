@@ -35,7 +35,19 @@ unsigned char movePlayer(unsigned char player, unsigned char direction)
         	printPlayer(player);
         	waitForButtonRelease(BIT1);
         	break;
-        }
+
+        case UP:
+            clearPlayer(player);
+            player -= 0x40;
+            printPlayer(player);
+            waitForButtonRelease(BIT3);
+            break;
+          case DOWN:
+        	clearPlayer(player);
+        	player += 0x40;
+        	printPlayer(player);
+        	waitForButtonRelease(BIT4);
+        	break;
 
         return player;
 }
