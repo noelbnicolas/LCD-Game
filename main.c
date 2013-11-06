@@ -61,7 +61,7 @@ int main(void)
                  * wait for button press to begin new game (you can poll here)
                  * wait for release before starting again
                  */
-        }
+        }//nada
 
         return 0;
 }
