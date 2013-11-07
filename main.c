@@ -6,11 +6,14 @@
 void init_timer();
 void init_buttons();
 
+char FLAG = 0;
+char PLAY = 0;
+unsigned char player;
+
 int main(void)
 {
 		WDTCTL = WDTPW|WDTHOLD;
-		char * Msg1 = "GAME OVER";
-		char * Msg2 = "GAME WON";
+
 	    initSPI();
 	    LCDinit();
 	    LCDclear();
@@ -19,12 +22,10 @@ int main(void)
 	    init_buttons();
 	    __enable_interrupt();
 
-        unsigned char player = initPlayer();
-
+        player = initPlayer();
+        printPlayer(player);
         while(1)
         {
-
-
 
         }
 
@@ -34,6 +35,47 @@ int main(void)
 //
 // YOUR TIMER A ISR GOES HERE
 //
+
+void testAndRespondToButtonPush(char buttonToTest);
+
+#pragma vector=PORT1_VECTOR
+__interrupt void Port_1(void)
+{
+	//BIT1-4 are defined in MSP library i think
+  testAndRespondToButtonPush(BIT1);
+  testAndRespondToButtonPush(BIT2);
+  testAndRespondToButtonPush(BIT3);
+  testAndRespondToButtonPush(BIT4);
+
+}
+
+#pragma vector=TIMER0_A1_VECTOR
+__interrupt void TIMER0_A1_ISR()
+{
+    TACTL &= ~TAIFG;            // clear interrupt flag
+    FLAG++;
+    if(FLAG >= 4){
+    	//TODO game lost
+    }
+}
+
+void testAndRespondToButtonPush(char buttonToTest)
+{
+    if (buttonToTest & P1IFG)
+    {
+        if (buttonToTest & P1IES)
+        {
+            movePlayer(player, buttonToTest);
+            FLAG = 0;
+        } else
+        {
+            debounce();
+        }
+
+        P1IES ^= buttonToTest;
+        P1IFG &= ~buttonToTest;
+    }
+}
 
 void init_timer()
 {
