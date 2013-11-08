@@ -2,6 +2,9 @@
 #include "game.h"
 #include "LCD.h"
 
+
+char WIN;
+
 unsigned char initPlayer()
 {
         return 0x80;
@@ -28,7 +31,6 @@ unsigned char movePlayer(unsigned char player, unsigned char direction)
         	   player -= 1;
         	}
           	printPlayer(player);
-          	//waitForButtonRelease(BIT2);
             break;
 
         case RIGHT:
@@ -37,19 +39,16 @@ unsigned char movePlayer(unsigned char player, unsigned char direction)
         	   player += 1;
         	        	}
         	printPlayer(player);
-        	//waitForButtonRelease(BIT1);
         	break;
         case UP:
             clearPlayer(player);
             player &= ~0x40;
             printPlayer(player);
-            //waitForButtonRelease(BIT3);
             break;
          case DOWN:
         	clearPlayer(player);
         	player |= 0x40;
         	printPlayer(player);
-        	//waitForButtonRelease(BIT4);
         	break;
 
 
@@ -57,8 +56,8 @@ unsigned char movePlayer(unsigned char player, unsigned char direction)
         }
         return player;
 }
-//char didPlayerWin(unsigned char player)
-//{
-//        return player == 0xC7;
-//}
+char didPlayerWin(unsigned char player)
+{
+        return player == 0xC7;
+}
 
