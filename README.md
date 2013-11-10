@@ -16,3 +16,7 @@ bottom right corner of the screen.
  should initiate a new game.
  
  Interrupt  was used for the button presses.
+ 
+ Documentation:
+ C2C Schriner explained the logic behind interrupts and how to use them
+ C2C Busho explained how to use SWITCH 
