@@ -16,7 +16,9 @@ bottom right corner of the screen.
  should initiate a new game.
  
  Interrupt  was used for the button presses.
+ The player does not go beyond the borders (off screen)
  
  Documentation:
  C2C Schriner explained the logic behind interrupts and how to use them
  C2C Busho explained how to use SWITCH 
+ Used Captain Branchflower's Buttons, LCD, game skeleton
