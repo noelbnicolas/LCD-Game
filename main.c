@@ -11,7 +11,7 @@ char MOVE = 0;
 char BUTTON = 0;
 char FLAG = 0;
 char PLAY = 1;
-//char WIN = 0;
+char WIN = 0;
 unsigned char player;
 char * Msg1 = "Game";
 char * Msg2 = "Over";
@@ -47,14 +47,14 @@ int main(void)
         		cursorToLineTwo();
         		writeString(Msg2);
         	}
-//        	if(WIN =1){
-//        		cursorToLineOne();
-//        		writeString(Msg3);
-//        		cursorToLineTwo();
-//        		writeString(Msg4);
-//        	}
-//
-//        }
+        	if(WIN ==1){
+        		cursorToLineOne();
+        		writeString(Msg3);
+        		cursorToLineTwo();
+        		writeString(Msg4);
+        	}
+
+        }
 
         return 0;
 }
